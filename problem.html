@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>The Problem of large list performance in HTML/CSS/JS</title>
+	<style type="text/css">
+	body {	
+		background: #eee;
+	}
+	body p {
+		width: 47%;
+		text-align: center;
+		text-shadow: 0 0 3px #333;
+		margin: 0 auto;
+	}
+		#list
+		{
+			width:377px;
+			height:477px;
+			overflow: scroll;
+			margin: 7% auto;
+			background: #fff;
+			padding: 11px;
+		}
+		#list .items div {
+			padding: 3px;
+			margin: 3px;
+			border-bottom: 1px solid #ccc;
+		}
+		#list .items div:hover {
+			background: #eee;
+		}
+	</style>
+</head>
+<body>
+	
+	<div id="list"><div class="items"> </div></div>
+
+	<p>	List with large number of items can be difficult to handle in slower machines
+		or with the mobile devices.</p>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.2.min.js"></script>
+<script type="text/javascript">
+;$(function(){
+	var strItems = '';
+
+	for (var i = 100000 ; i >= 0; i--) {
+		strItems = '<div><span>test item number ' + i + '</span></div>' + strItems;
+	}
+
+	$listitems = $(strItems);
+	$listitems.appendTo('#list .items');
+});
+</script>
+</body>
+</html>
